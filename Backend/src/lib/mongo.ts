@@ -1,24 +1,48 @@
-import * as mongoDB from "mongodb"
-import * as dotenv from "dotenv"
+import { MongoClient, Collection, Db, ServerApiVersion } from "mongodb";
+import dotenv from "dotenv";
+dotenv.config();
 
-export const collections: { questions?: mongoDB.Collection } = {}
+const uri = process.env.MONGODB_URI;
+let client: MongoClient | null = null;
 
-export async function connectToDatabase() {
-    dotenv.config();
+let dbName = process.env.MONGODB_DB_NAME;
+let collectionName = process.env.MONGODB_COLLECTION_NAME;
 
-    const client: mongoDB.MongoClient = new mongoDB.MongoClient(
-        process.env.MONGODB_URL as string
-    );
+let database: Db | null = null;
+let collection: Collection | null = null;
 
-    await client.connect();
 
-    const db: mongoDB.Db = client.db(process.env.MONGODB_DB_NAME);
+export async function getDb(): Promise<Db> {
+    if (database) return database;
 
-    const questionsCollection: mongoDB.Collection = db.collection(
-        process.env.QUESTIONS_COLLECTION_NAME as string
-    );
+    try {
+        // this is throwing an error. cannot make client
+        const client = new MongoClient(uri);
+        console.log("2")
+        await client.connect();
+        console.log("Connected to MongoDB.");
+        database = client.db(dbName);
+        console.log("Database obtained.");
+        return database;
+    } catch (error) {
+        console.error("Failed to connect to MongoDB:", error);
+        throw error;
+    }
+}
 
-    collections.questions = questionsCollection;
+export async function getCollection(): Promise<Collection> {
+    if (collection) return collection;
 
-    console.log(`Successfully connected to database: ${db.databaseName} and collection: ${questionsCollection.collectionName}`);
+    console.log("Getting collection...");
+    database = await getDb();
+    collection = database.collection(collectionName);
+    console.log("Collection obtained.");
+    return collection;
+}
+
+export async function closeMongo() {
+    if (client) await client.close();
+    client = null;
+    database = null;
+    collection = null;
 }
