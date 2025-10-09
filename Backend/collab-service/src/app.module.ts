@@ -13,6 +13,6 @@ import { ConfigModule } from '@nestjs/config';
     CollabModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CollabGateway],
+  providers: [AppService],
 })
 export class AppModule {}
