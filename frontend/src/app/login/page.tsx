@@ -2,18 +2,23 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { mockLogin } from "../../../lib/mockApi";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: replace with real auth logic
-    console.log("Logging in:", { email, password });
+const handleLogin = (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const user = mockLogin(email, password);
+    console.log("✅ Logged in as:", user.name);
     router.push("/problems");
-  };
+  } catch (err) {
+    alert("❌ Invalid login");
+  }
+};
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-100">
