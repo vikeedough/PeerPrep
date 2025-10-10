@@ -38,6 +38,7 @@ export default function LoginCard({ loading, setLoading }: LoginCardProps) {
         setLoading={setLoading}
         setError={setError}
         setInvalidFields={setInvalidFields}
+        invalidFields={invalidFields} 
       />
 
       {error && <p className="text-sm text-center mt-2" style={{ color: theme.error }}>{error}</p>}

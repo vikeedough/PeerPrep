@@ -9,9 +9,15 @@ interface LoginFormProps {
   setLoading: (loading: boolean) => void;
   setError: (error: string) => void;
   setInvalidFields: (fields: string[]) => void;
+  invalidFields: string[];
 }
 
-export default function LoginForm({ setLoading, setError, setInvalidFields }: LoginFormProps) {
+export default function LoginForm({
+  setLoading,
+  setError,
+  setInvalidFields,
+  invalidFields,
+}: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -23,10 +29,18 @@ export default function LoginForm({ setLoading, setError, setInvalidFields }: Lo
     setError("");
     setInvalidFields([]);
 
+    const invalids: string[] = [];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim()) return setError("⚠️ Email cannot be empty.");
-    if (!password.trim()) return setError("⚠️ Password cannot be empty.");
-    if (!emailRegex.test(email)) return setError("❌ Invalid email format.");
+
+    if (!email.trim()) invalids.push("email");
+    if (!password.trim()) invalids.push("password");
+    if (!emailRegex.test(email)) invalids.push("email");
+
+    if (invalids.length > 0) {
+      setInvalidFields(invalids);
+      setError("⚠️ Please check your email and password.");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -43,6 +57,9 @@ export default function LoginForm({ setLoading, setError, setInvalidFields }: Lo
     }
   };
 
+  const getBorderColor = (field: string) =>
+    invalidFields.includes(field) ? theme.error : theme.input.border;
+
   return (
     <form onSubmit={handleLogin} className="flex flex-col gap-4" noValidate>
       <input
@@ -52,7 +69,7 @@ export default function LoginForm({ setLoading, setError, setInvalidFields }: Lo
         style={{
           backgroundColor: theme.input.background,
           color: theme.input.text,
-          border: `1px solid ${theme.input.border}`,
+          border: `1px solid ${getBorderColor("email")}`,
         }}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +82,7 @@ export default function LoginForm({ setLoading, setError, setInvalidFields }: Lo
         style={{
           backgroundColor: theme.input.background,
           color: theme.input.text,
-          border: `1px solid ${theme.input.border}`,
+          border: `1px solid ${getBorderColor("password")}`,
         }}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
