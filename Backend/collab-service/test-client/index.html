@@ -101,6 +101,7 @@
                 this.socket = null;
                 this.isConnected = false;
                 this.initializeUI();
+                this.token = 'dev-test-token'; // Replace with actual JWT after
             }
 
             initializeUI() {
@@ -156,6 +157,9 @@
                 try {
                     this.socket = io(`${serverUrl}/collab`, {
                         transports: ['websocket'],
+                        auth: {
+                            token: this.token // Replace with actual JWT if needed
+                        },
                         forceNew: true
                     });
 
