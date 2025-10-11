@@ -18,8 +18,7 @@ app.get("/questions", async (req, res) => {
     console.log(questions);
     res.json(questions);
   } catch (error) {
-    errorMessage = String(error);
-    res.status(500).json({ error: errorMessage });
+    res.status(500).json({ error: String(error) });
   }
 });
 
