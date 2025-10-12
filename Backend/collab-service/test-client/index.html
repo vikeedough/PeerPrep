@@ -64,6 +64,15 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             margin: 5px;
+            min-width: 200px;
+        }
+        .connection-controls {
+            margin-bottom: 15px;
+        }
+        .connection-controls label {
+            display: inline-block;
+            min-width: 100px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -74,6 +83,10 @@
         <div class="connection-controls">
             <label for="serverUrl">Server URL:</label>
             <input type="text" id="serverUrl" value="http://localhost:3000" placeholder="http://localhost:3000">
+            <br>
+            <label for="sessionId">Session ID:</label>
+            <input type="text" id="sessionId" value="test-session-123" placeholder="Enter session ID to join">
+            <br>
             <button id="connectBtn">Connect</button>
             <button id="disconnectBtn" disabled>Disconnect</button>
         </div>
@@ -85,6 +98,8 @@
             <button id="pingBtn" disabled>Send Ping</button>
             <input type="text" id="customMessage" placeholder="Custom message" disabled>
             <button id="customBtn" disabled>Send Custom Message</button>
+            <br>
+            <button id="listRoomsBtn" disabled>List All Rooms (Debug)</button>
         </div>
 
         <div class="log-section">
@@ -102,16 +117,20 @@
                 this.isConnected = false;
                 this.initializeUI();
                 this.token = 'dev-test-token'; // Replace with actual JWT after
+                this.currentSessionId = null;
+                this.currentUserId = null;
             }
 
             initializeUI() {
                 this.serverUrlInput = document.getElementById('serverUrl');
+                this.sessionIdInput = document.getElementById('sessionId');
                 this.connectBtn = document.getElementById('connectBtn');
                 this.disconnectBtn = document.getElementById('disconnectBtn');
                 this.statusDiv = document.getElementById('status');
                 this.pingBtn = document.getElementById('pingBtn');
                 this.customMessageInput = document.getElementById('customMessage');
                 this.customBtn = document.getElementById('customBtn');
+                this.listRoomsBtn = document.getElementById('listRoomsBtn');
                 this.logDiv = document.getElementById('log');
                 this.clearLogBtn = document.getElementById('clearLogBtn');
 
@@ -119,6 +138,7 @@
                 this.disconnectBtn.addEventListener('click', () => this.disconnect());
                 this.pingBtn.addEventListener('click', () => this.sendPing());
                 this.customBtn.addEventListener('click', () => this.sendCustomMessage());
+                this.listRoomsBtn.addEventListener('click', () => this.listAllRooms());
                 this.clearLogBtn.addEventListener('click', () => this.clearLog());
             }
 
@@ -134,12 +154,16 @@
                 this.statusDiv.className = `status ${connected ? 'connected' : 'disconnected'}`;
                 
                 if (connected) {
-                    this.statusDiv.textContent = `Connected ${message}`;
+                    const sessionInfo = this.currentSessionId ? ` | Session: ${this.currentSessionId}` : '';
+                    const userInfo = this.currentUserId ? ` | User: ${this.currentUserId}` : '';
+                    this.statusDiv.textContent = `Connected ${message}${sessionInfo}${userInfo}`;
                     this.connectBtn.disabled = true;
                     this.disconnectBtn.disabled = false;
                     this.pingBtn.disabled = false;
                     this.customMessageInput.disabled = false;
                     this.customBtn.disabled = false;
+                    this.listRoomsBtn.disabled = false;
+                    this.sessionIdInput.disabled = true;
                 } else {
                     this.statusDiv.textContent = `Disconnected ${message}`;
                     this.connectBtn.disabled = false;
@@ -147,18 +171,30 @@
                     this.pingBtn.disabled = true;
                     this.customMessageInput.disabled = true;
                     this.customBtn.disabled = true;
+                    this.listRoomsBtn.disabled = true;
+                    this.sessionIdInput.disabled = false;
+                    this.currentSessionId = null;
+                    this.currentUserId = null;
                 }
             }
 
             connect() {
                 const serverUrl = this.serverUrlInput.value;
-                this.log(`Attempting to connect to ${serverUrl}/collab`);
+                const sessionId = this.sessionIdInput.value.trim();
+                
+                if (!sessionId) {
+                    this.log('Error: Session ID is required');
+                    return;
+                }
+                
+                this.log(`Attempting to connect to ${serverUrl}/collab with session ID: ${sessionId}`);
 
                 try {
                     this.socket = io(`${serverUrl}/collab`, {
                         transports: ['websocket'],
                         auth: {
-                            token: this.token // Replace with actual JWT if needed
+                            token: this.token, // Replace with actual JWT if needed
+                            sessionId: sessionId
                         },
                         forceNew: true
                     });
@@ -166,6 +202,20 @@
                     this.socket.on('connect', () => {
                         this.log(`Connected with socket ID: ${this.socket.id}`);
                         this.updateStatus(true, `(ID: ${this.socket.id})`);
+                    });
+
+                    // Listen for successful session join
+                    this.socket.on('collab:connected', (data) => {
+                        this.log(`Successfully joined session: ${JSON.stringify(data)}`);
+                        this.currentUserId = data.userId;
+                        this.currentSessionId = data.sessionId;
+                        this.updateStatus(true, `(ID: ${this.socket.id})`);
+                    });
+
+                    // Listen for session join errors
+                    this.socket.on('collab:error', (error) => {
+                        this.log(`Session error: ${JSON.stringify(error)}`);
+                        this.updateStatus(false, '- Session Error');
                     });
 
                     this.socket.on('disconnect', (reason) => {
@@ -185,7 +235,7 @@
 
                     // Listen for any other events
                     this.socket.onAny((eventName, ...args) => {
-                        if (eventName !== 'pong') { // Don't log pong twice
+                        if (!['pong', 'collab:connected', 'collab:error'].includes(eventName)) {
                             this.log(`Received event '${eventName}': ${JSON.stringify(args)}`);
                         }
                     });
@@ -232,6 +282,15 @@
                     }
                 } else {
                     this.log('Cannot send message - not connected');
+                }
+            }
+
+            listAllRooms() {
+                if (this.socket && this.isConnected) {
+                    this.log('Requesting list of all rooms...');
+                    this.socket.emit('collab:listAllRooms');
+                } else {
+                    this.log('Cannot list rooms - not connected');
                 }
             }
 
