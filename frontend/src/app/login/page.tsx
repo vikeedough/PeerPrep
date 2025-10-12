@@ -1,49 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/navigation";
+import { mockCheckLogin } from "../../../lib/mockApi";
+import TopNavBar from "../components/layout/TopNavBar";
+import LoginCard from "../components/auth/LoginCard";
+import LoadingOverlay from "../components/common/LoadingOverlay";
+import { useTheme } from "../../../context/ThemeContext";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { theme } = useTheme();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: replace with real auth logic
-    console.log("Logging in:", { email, password });
-    router.push("/problems");
-  };
+  useEffect(() => {
+    const user = mockCheckLogin();
+    if (user) {
+      console.log("Auto-login as:", user.name);
+      router.push("/problems");
+    }
+  }, [router]);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="border rounded-lg p-2"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="border rounded-lg p-2"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"
-          >
-            Sign In
-          </button>
-        </form>
-      </div>
-    </main>
+    <>
+      <main
+        className="min-h-screen flex flex-col relative"
+        style={{
+          backgroundColor: theme.background,
+          color: theme.text,
+        }}
+      >
+        {loading && <LoadingOverlay />}
+
+        <TopNavBar />
+
+        <section className="flex flex-1 items-center justify-center">
+          <LoginCard loading={loading} setLoading={setLoading} />
+        </section>
+      </main>
+    </>
   );
 }
