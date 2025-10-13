@@ -7,10 +7,15 @@ import {
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
 import { AuthService } from 'src/auth/auth.service';
+import { CollabService } from './collab.service';
+import { toUint8 } from './helpers';
 
 @WebSocketGateway({ namespace: '/collab', transports: ['websocket'] })
 export class CollabGateway {
-  constructor(private readonly auth: AuthService) {}
+  constructor(
+    private readonly auth: AuthService,
+    private readonly collab: CollabService,
+  ) {}
 
   @WebSocketServer()
   server: Server;
@@ -22,7 +27,9 @@ export class CollabGateway {
       // verify JWT
       const { userId } = this.auth.verify(token);
 
-      const sessionId = client.handshake.auth.sessionId as string | null;
+      const sessionId = (
+        client.handshake.auth.sessionId as string | null
+      ).trim();
       if (!sessionId) {
         client.emit('collab:error', {
           ok: false,
@@ -38,6 +45,10 @@ export class CollabGateway {
 
       // join room based on sessionId
       client.join('session:' + sessionId);
+
+      // send current doc state to the client
+      const state = this.collab.encodeCurrentState(sessionId);
+      client.emit('collab:state', state);
 
       // small emit to confirm connection
       client.emit('collab:connected', { ok: true, userId, sessionId });
@@ -65,6 +76,40 @@ export class CollabGateway {
   handlePing(@ConnectedSocket() client: Socket, @MessageBody() data: any) {
     console.log('Ping received:', data);
     client.emit('pong', { msg: 'Hello from server!' });
+  }
+
+  @SubscribeMessage('collab:update')
+  handleStateUpdate(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() updateData: unknown,
+  ) {
+    const sessionId = client.data.sessionId as string;
+    if (!sessionId) {
+      return;
+    }
+
+    const update = toUint8(updateData);
+
+    // apply to server doc
+    this.collab.applyUpdateToSession(sessionId, update);
+
+    // broadcast to other clients in the same session
+    client.to('session:' + sessionId).emit('collab:update', update);
+  }
+
+  @SubscribeMessage('collab:awareness')
+  handleAwarenessUpdate(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() awarenessData: unknown,
+  ) {
+    const sessionId = client.data.sessionId as string;
+    if (!sessionId) {
+      return;
+    }
+
+    const update = toUint8(awarenessData);
+
+    client.to('session:' + sessionId).emit('collab:awareness', update);
   }
 
   @SubscribeMessage('collab:listAllRooms')

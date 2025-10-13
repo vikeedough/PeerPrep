@@ -1,12 +1,13 @@
 import * as Y from 'yjs';
 import { Awareness } from 'y-protocols/awareness';
-import { Session } from 'inspector/promises';
+import { Injectable } from '@nestjs/common';
 
 export type SessionState = {
   doc: Y.Doc;
   awareness: Awareness;
 };
 
+@Injectable()
 export class CollabService {
   private sessions = new Map<string, SessionState>();
 

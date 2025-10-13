@@ -74,11 +74,68 @@
             min-width: 100px;
             font-weight: bold;
         }
+        .editor-section {
+            margin: 20px 0;
+        }
+        #collaborativeEditor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        #collaborativeEditor:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+        .editor-status {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sync-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #6c757d;
+        }
+        .sync-indicator.syncing {
+            background-color: #ffc107;
+            animation: pulse 1s infinite;
+        }
+        .sync-indicator.synced {
+            background-color: #28a745;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Collab Gateway Test Client</h1>
+        
+        <div style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+            <h4>Testing Instructions:</h4>
+            <ol>
+                <li>Start the server with <code>npm run start:dev</code></li>
+                <li>Open this page in <strong>two different browser tabs</strong></li>
+                <li>Use the same <strong>Session ID</strong> in both tabs (e.g., "test-session-123")</li>
+                <li>Click <strong>Connect</strong> in both tabs</li>
+                <li>Type in the textarea in Tab A → Tab B should mirror the changes instantly</li>
+                <li>Try reloading one tab → it should receive the latest text content</li>
+            </ol>
+        </div>
         
         <div class="connection-controls">
             <label for="serverUrl">Server URL:</label>
@@ -87,11 +144,23 @@
             <label for="sessionId">Session ID:</label>
             <input type="text" id="sessionId" value="test-session-123" placeholder="Enter session ID to join">
             <br>
+            <label for="authToken">Auth Token:</label>
+            <input type="text" id="authToken" value="dev-test-token" placeholder="Authentication token">
+            <br>
             <button id="connectBtn">Connect</button>
             <button id="disconnectBtn" disabled>Disconnect</button>
         </div>
 
         <div id="status" class="status disconnected">Disconnected</div>
+
+        <div class="editor-section">
+            <h3>Collaborative Editor</h3>
+            <textarea id="collaborativeEditor" placeholder="Start typing here... Changes will be synchronized with other clients!" disabled></textarea>
+            <div id="editorStatus" class="editor-status">
+                <span>Editor: Not connected</span>
+                <div id="syncIndicator" class="sync-indicator"></div>
+            </div>
+        </div>
 
         <div class="test-controls">
             <h3>Test Actions</h3>
@@ -110,7 +179,16 @@
     </div>
 
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script>
+    <!-- Use ESM import of Yjs to guarantee Y exists -->
+    <script type="module">
+        import * as Y from 'https://cdn.skypack.dev/yjs';
+
+        // Binary handling helper
+        const asU8 = (d) =>
+            d instanceof Uint8Array ? d
+            : d instanceof ArrayBuffer ? new Uint8Array(d)
+            : ArrayBuffer.isView(d) ? new Uint8Array(d.buffer, d.byteOffset, d.byteLength)
+            : new Uint8Array();
         class CollabTestClient {
             constructor() {
                 this.socket = null;
@@ -119,11 +197,21 @@
                 this.token = 'dev-test-token'; // Replace with actual JWT after
                 this.currentSessionId = null;
                 this.currentUserId = null;
+                
+                // YJS setup
+                this.yDoc = new Y.Doc();
+                this.yText = this.yDoc.getText('content');
+                this.isUpdatingFromYjs = false;
+                this.isApplyingRemote = false;
+                this.isRenderingFromY = false;
+                this.composing = false;
+                this.setupYjsBindings();
             }
 
             initializeUI() {
                 this.serverUrlInput = document.getElementById('serverUrl');
                 this.sessionIdInput = document.getElementById('sessionId');
+                this.authTokenInput = document.getElementById('authToken');
                 this.connectBtn = document.getElementById('connectBtn');
                 this.disconnectBtn = document.getElementById('disconnectBtn');
                 this.statusDiv = document.getElementById('status');
@@ -133,6 +221,11 @@
                 this.listRoomsBtn = document.getElementById('listRoomsBtn');
                 this.logDiv = document.getElementById('log');
                 this.clearLogBtn = document.getElementById('clearLogBtn');
+                
+                // Editor elements
+                this.editorTextarea = document.getElementById('collaborativeEditor');
+                this.editorStatusDiv = document.getElementById('editorStatus');
+                this.syncIndicator = document.getElementById('syncIndicator');
 
                 this.connectBtn.addEventListener('click', () => this.connect());
                 this.disconnectBtn.addEventListener('click', () => this.disconnect());
@@ -140,6 +233,17 @@
                 this.customBtn.addEventListener('click', () => this.sendCustomMessage());
                 this.listRoomsBtn.addEventListener('click', () => this.listAllRooms());
                 this.clearLogBtn.addEventListener('click', () => this.clearLog());
+                
+                // Editor event listeners
+                this.editorTextarea.addEventListener('input', () => this.handleEditorInput());
+                this.editorTextarea.addEventListener('selectionchange', () => this.handleSelectionChange());
+                
+                // IME composition handling
+                this.editorTextarea.addEventListener('compositionstart', () => { this.composing = true; });
+                this.editorTextarea.addEventListener('compositionend', () => { 
+                    this.composing = false; 
+                    this.handleEditorInput(); 
+                });
             }
 
             log(message) {
@@ -147,6 +251,72 @@
                 const logMessage = `[${timestamp}] ${message}\n`;
                 this.logDiv.textContent += logMessage;
                 this.logDiv.scrollTop = this.logDiv.scrollHeight;
+            }
+
+            setupYjsBindings() {
+                // Listen for changes in YJS document and update textarea
+                this.yText.observe(() => {
+                    if (!this.isUpdatingFromYjs) {
+                        const currentSelection = {
+                            start: this.editorTextarea.selectionStart,
+                            end: this.editorTextarea.selectionEnd
+                        };
+                        
+                        this.isRenderingFromY = true;
+                        this.editorTextarea.value = this.yText.toString();
+                        this.isRenderingFromY = false;
+                        
+                        // Restore cursor position
+                        this.editorTextarea.setSelectionRange(currentSelection.start, currentSelection.end);
+                        this.updateEditorStatus(`Document updated (${this.yText.length} chars)`, 'synced');
+                    }
+                });
+
+                // Listen for document updates to send to other clients
+                this.yDoc.on('update', (update) => {
+                    if (!this.socket || !this.isConnected) return;
+                    if (this.isApplyingRemote) return;                 // <- crucial: don’t echo remotes
+
+                    this.updateEditorStatus(`Sending update...`, 'syncing');
+                    this.socket.emit('collab:update', update);         // raw binary
+                    this.log(`Sent YJS update: ${update.byteLength ?? update.length} bytes`);
+
+                    setTimeout(() => this.updateEditorStatus(`Synced (${this.yText.length} chars)`, 'synced'), 100);
+                    });
+            }
+
+            handleEditorInput = () => {
+                if (this.isRenderingFromY || this.composing) return;
+
+                const text = this.editorTextarea.value;
+                const current = this.yText.toString();
+                if (text === current) return;
+
+                this.yDoc.transact(() => {
+                    this.yText.delete(0, this.yText.length);
+                    if (text.length) this.yText.insert(0, text);
+                });
+                this.updateEditorStatus(`Local change: ${text.length} chars`, 'syncing');
+            };
+
+
+            handleSelectionChange() {
+                // Placeholder for cursor/selection awareness
+                const start = this.editorTextarea.selectionStart;
+                const end = this.editorTextarea.selectionEnd;
+                // Could send awareness updates here for collaborative cursors
+            }
+
+            updateEditorStatus(message, syncStatus = 'idle') {
+                this.editorStatusDiv.querySelector('span').textContent = `Editor: ${message}`;
+                
+                // Update sync indicator
+                this.syncIndicator.className = 'sync-indicator';
+                if (syncStatus === 'syncing') {
+                    this.syncIndicator.classList.add('syncing');
+                } else if (syncStatus === 'synced') {
+                    this.syncIndicator.classList.add('synced');
+                }
             }
 
             updateStatus(connected, message = '') {
@@ -164,6 +334,9 @@
                     this.customBtn.disabled = false;
                     this.listRoomsBtn.disabled = false;
                     this.sessionIdInput.disabled = true;
+                    this.authTokenInput.disabled = true;
+                    this.editorTextarea.disabled = false;
+                    this.updateEditorStatus('Ready for collaboration');
                 } else {
                     this.statusDiv.textContent = `Disconnected ${message}`;
                     this.connectBtn.disabled = false;
@@ -173,27 +346,36 @@
                     this.customBtn.disabled = true;
                     this.listRoomsBtn.disabled = true;
                     this.sessionIdInput.disabled = false;
+                    this.authTokenInput.disabled = false;
+                    this.editorTextarea.disabled = true;
                     this.currentSessionId = null;
                     this.currentUserId = null;
+                    this.updateEditorStatus('Not connected');
                 }
             }
 
             connect() {
                 const serverUrl = this.serverUrlInput.value;
                 const sessionId = this.sessionIdInput.value.trim();
+                const token = this.authTokenInput.value.trim();
                 
                 if (!sessionId) {
                     this.log('Error: Session ID is required');
                     return;
                 }
                 
-                this.log(`Attempting to connect to ${serverUrl}/collab with session ID: ${sessionId}`);
+                if (!token) {
+                    this.log('Error: Auth token is required');
+                    return;
+                }
+                
+                this.log(`Attempting to connect to ${serverUrl}/collab with session ID: ${sessionId} and token: ${token}`);
 
                 try {
                     this.socket = io(`${serverUrl}/collab`, {
                         transports: ['websocket'],
                         auth: {
-                            token: this.token, // Replace with actual JWT if needed
+                            token: token,
                             sessionId: sessionId
                         },
                         forceNew: true
@@ -233,9 +415,45 @@
                         this.log(`Received pong: ${JSON.stringify(data)}`);
                     });
 
+                    // Listen for YJS state synchronization
+                    this.socket.on('collab:state', (payload) => {
+                        const state = asU8(payload);
+                        this.log(`Received initial state: ${state.byteLength} bytes`);
+                        this.isApplyingRemote = true;
+                        try {
+                            Y.applyUpdate(this.yDoc, state);
+                            // No manual textarea.value here—observe() will render.
+                            this.updateEditorStatus(`Synced with server (${this.yText.length} chars)`, 'synced');
+                        } catch (e) {
+                            this.log(`Error applying initial state: ${e.message}`);
+                        }
+                        this.isApplyingRemote = false;
+                    });
+
+                    // Listen for YJS updates from other clients
+                    this.socket.on('collab:update', (payload) => {
+                        const update = asU8(payload);
+                        this.log(`Received YJS update: ${update.byteLength} bytes`);
+                        this.isApplyingRemote = true;
+                        try {
+                            Y.applyUpdate(this.yDoc, update);
+                            // No manual textarea.value here—observe() will render.
+                            this.updateEditorStatus(`Update from peer (${this.yText.length} chars)`, 'synced');
+                        } catch (e) {
+                            this.log(`Error applying update: ${e.message}`);
+                        }
+                        this.isApplyingRemote = false;
+                    });
+
+                    // Listen for awareness updates (collaborative cursors/selections)
+                    this.socket.on('collab:awareness', (awarenessArray) => {
+                        // Placeholder for collaborative cursors
+                        this.log(`Received awareness update: ${awarenessArray.length} bytes`);
+                    });
+
                     // Listen for any other events
                     this.socket.onAny((eventName, ...args) => {
-                        if (!['pong', 'collab:connected', 'collab:error'].includes(eventName)) {
+                        if (!['pong', 'collab:connected', 'collab:error', 'collab:state', 'collab:update', 'collab:awareness'].includes(eventName)) {
                             this.log(`Received event '${eventName}': ${JSON.stringify(args)}`);
                         }
                     });
@@ -251,6 +469,12 @@
                     this.socket.disconnect();
                     this.socket = null;
                 }
+                // Reset YJS document for new session
+                this.yDoc.destroy();
+                this.yDoc = new Y.Doc();
+                this.yText = this.yDoc.getText('content');
+                this.setupYjsBindings();
+                this.editorTextarea.value = '';
                 this.updateStatus(false);
             }
 
