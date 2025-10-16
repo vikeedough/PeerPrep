@@ -1,0 +1,1203 @@
+[
+  {
+    "id": 1,
+    "name": "Problem 1",
+    "description": "Solve problem number 1 involving set, trie, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 45.52,
+    "dataStructures": [
+      "set",
+      "trie",
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 2,
+    "name": "Problem 2",
+    "description": "Solve problem number 2 involving hash table.",
+    "difficulty": "low",
+    "acceptanceRate": 49.73,
+    "dataStructures": [
+      "hash table"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 3,
+    "name": "Problem 3",
+    "description": "Solve problem number 3 involving tree, string.",
+    "difficulty": "low",
+    "acceptanceRate": 46.25,
+    "dataStructures": [
+      "tree",
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 4,
+    "name": "Problem 4",
+    "description": "Solve problem number 4 involving heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 78.98,
+    "dataStructures": [
+      "heap"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 5,
+    "name": "Problem 5",
+    "description": "Solve problem number 5 involving heap, tree, string.",
+    "difficulty": "high",
+    "acceptanceRate": 44.98,
+    "dataStructures": [
+      "heap",
+      "tree",
+      "string"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 6,
+    "name": "Problem 6",
+    "description": "Solve problem number 6 involving string.",
+    "difficulty": "low",
+    "acceptanceRate": 78.21,
+    "dataStructures": [
+      "string"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 7,
+    "name": "Problem 7",
+    "description": "Solve problem number 7 involving trie.",
+    "difficulty": "high",
+    "acceptanceRate": 48.05,
+    "dataStructures": [
+      "trie"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 8,
+    "name": "Problem 8",
+    "description": "Solve problem number 8 involving matrix, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.37,
+    "dataStructures": [
+      "matrix",
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 9,
+    "name": "Problem 9",
+    "description": "Solve problem number 9 involving heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 61.57,
+    "dataStructures": [
+      "heap"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 10,
+    "name": "Problem 10",
+    "description": "Solve problem number 10 involving trie.",
+    "difficulty": "high",
+    "acceptanceRate": 83.11,
+    "dataStructures": [
+      "trie"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 11,
+    "name": "Problem 11",
+    "description": "Solve problem number 11 involving tree, trie, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 58.1,
+    "dataStructures": [
+      "tree",
+      "trie",
+      "string"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 12,
+    "name": "Problem 12",
+    "description": "Solve problem number 12 involving heap, stack.",
+    "difficulty": "low",
+    "acceptanceRate": 61.1,
+    "dataStructures": [
+      "heap",
+      "stack"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 13,
+    "name": "Problem 13",
+    "description": "Solve problem number 13 involving linked list.",
+    "difficulty": "medium",
+    "acceptanceRate": 30.36,
+    "dataStructures": [
+      "linked list"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 14,
+    "name": "Problem 14",
+    "description": "Solve problem number 14 involving hash table, matrix, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 31.5,
+    "dataStructures": [
+      "hash table",
+      "matrix",
+      "string"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 15,
+    "name": "Problem 15",
+    "description": "Solve problem number 15 involving matrix, set.",
+    "difficulty": "high",
+    "acceptanceRate": 56.7,
+    "dataStructures": [
+      "matrix",
+      "set"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 16,
+    "name": "Problem 16",
+    "description": "Solve problem number 16 involving heap, stack, queue.",
+    "difficulty": "low",
+    "acceptanceRate": 72.03,
+    "dataStructures": [
+      "heap",
+      "stack",
+      "queue"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 17,
+    "name": "Problem 17",
+    "description": "Solve problem number 17 involving stack, queue, hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 87.53,
+    "dataStructures": [
+      "stack",
+      "queue",
+      "hash table"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 18,
+    "name": "Problem 18",
+    "description": "Solve problem number 18 involving trie, string.",
+    "difficulty": "high",
+    "acceptanceRate": 70.47,
+    "dataStructures": [
+      "trie",
+      "string"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 19,
+    "name": "Problem 19",
+    "description": "Solve problem number 19 involving stack, heap.",
+    "difficulty": "low",
+    "acceptanceRate": 72.24,
+    "dataStructures": [
+      "stack",
+      "heap"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 20,
+    "name": "Problem 20",
+    "description": "Solve problem number 20 involving set, heap, string.",
+    "difficulty": "high",
+    "acceptanceRate": 72.59,
+    "dataStructures": [
+      "set",
+      "heap",
+      "string"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 21,
+    "name": "Problem 21",
+    "description": "Solve problem number 21 involving set, trie.",
+    "difficulty": "high",
+    "acceptanceRate": 76.54,
+    "dataStructures": [
+      "set",
+      "trie"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 22,
+    "name": "Problem 22",
+    "description": "Solve problem number 22 involving graph, set, trie.",
+    "difficulty": "medium",
+    "acceptanceRate": 34.44,
+    "dataStructures": [
+      "graph",
+      "set",
+      "trie"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 23,
+    "name": "Problem 23",
+    "description": "Solve problem number 23 involving hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 35.16,
+    "dataStructures": [
+      "hash table"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 24,
+    "name": "Problem 24",
+    "description": "Solve problem number 24 involving graph, hash table, heap.",
+    "difficulty": "high",
+    "acceptanceRate": 27.8,
+    "dataStructures": [
+      "graph",
+      "hash table",
+      "heap"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 25,
+    "name": "Problem 25",
+    "description": "Solve problem number 25 involving hash table, array, queue.",
+    "difficulty": "medium",
+    "acceptanceRate": 25.14,
+    "dataStructures": [
+      "hash table",
+      "array",
+      "queue"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 26,
+    "name": "Problem 26",
+    "description": "Solve problem number 26 involving hash table, tree, matrix.",
+    "difficulty": "high",
+    "acceptanceRate": 55.33,
+    "dataStructures": [
+      "hash table",
+      "tree",
+      "matrix"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 27,
+    "name": "Problem 27",
+    "description": "Solve problem number 27 involving graph, stack.",
+    "difficulty": "medium",
+    "acceptanceRate": 53.37,
+    "dataStructures": [
+      "graph",
+      "stack"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 28,
+    "name": "Problem 28",
+    "description": "Solve problem number 28 involving graph, hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 75.9,
+    "dataStructures": [
+      "graph",
+      "hash table"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 29,
+    "name": "Problem 29",
+    "description": "Solve problem number 29 involving stack.",
+    "difficulty": "medium",
+    "acceptanceRate": 73.41,
+    "dataStructures": [
+      "stack"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 30,
+    "name": "Problem 30",
+    "description": "Solve problem number 30 involving queue, string.",
+    "difficulty": "low",
+    "acceptanceRate": 32.81,
+    "dataStructures": [
+      "queue",
+      "string"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 31,
+    "name": "Problem 31",
+    "description": "Solve problem number 31 involving hash table, matrix.",
+    "difficulty": "low",
+    "acceptanceRate": 73.12,
+    "dataStructures": [
+      "hash table",
+      "matrix"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 32,
+    "name": "Problem 32",
+    "description": "Solve problem number 32 involving hash table, heap, linked list.",
+    "difficulty": "high",
+    "acceptanceRate": 27.75,
+    "dataStructures": [
+      "hash table",
+      "heap",
+      "linked list"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 33,
+    "name": "Problem 33",
+    "description": "Solve problem number 33 involving graph.",
+    "difficulty": "medium",
+    "acceptanceRate": 60.67,
+    "dataStructures": [
+      "graph"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 34,
+    "name": "Problem 34",
+    "description": "Solve problem number 34 involving hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 38.42,
+    "dataStructures": [
+      "hash table"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 35,
+    "name": "Problem 35",
+    "description": "Solve problem number 35 involving graph.",
+    "difficulty": "high",
+    "acceptanceRate": 31.78,
+    "dataStructures": [
+      "graph"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 36,
+    "name": "Problem 36",
+    "description": "Solve problem number 36 involving stack.",
+    "difficulty": "medium",
+    "acceptanceRate": 47.7,
+    "dataStructures": [
+      "stack"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 37,
+    "name": "Problem 37",
+    "description": "Solve problem number 37 involving hash table, heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 35.8,
+    "dataStructures": [
+      "hash table",
+      "heap"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 38,
+    "name": "Problem 38",
+    "description": "Solve problem number 38 involving array, tree, hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 40.34,
+    "dataStructures": [
+      "array",
+      "tree",
+      "hash table"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 39,
+    "name": "Problem 39",
+    "description": "Solve problem number 39 involving trie, stack, matrix.",
+    "difficulty": "high",
+    "acceptanceRate": 47.6,
+    "dataStructures": [
+      "trie",
+      "stack",
+      "matrix"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 40,
+    "name": "Problem 40",
+    "description": "Solve problem number 40 involving string.",
+    "difficulty": "low",
+    "acceptanceRate": 60.16,
+    "dataStructures": [
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 41,
+    "name": "Problem 41",
+    "description": "Solve problem number 41 involving hash table, trie, heap.",
+    "difficulty": "high",
+    "acceptanceRate": 56.99,
+    "dataStructures": [
+      "hash table",
+      "trie",
+      "heap"
+    ],
+    "topicType": "algorithms"
+  },
+  {
+    "id": 42,
+    "name": "Problem 42",
+    "description": "Solve problem number 42 involving matrix.",
+    "difficulty": "high",
+    "acceptanceRate": 33.84,
+    "dataStructures": [
+      "matrix"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 43,
+    "name": "Problem 43",
+    "description": "Solve problem number 43 involving linked list, matrix, tree.",
+    "difficulty": "low",
+    "acceptanceRate": 70.54,
+    "dataStructures": [
+      "linked list",
+      "matrix",
+      "tree"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 44,
+    "name": "Problem 44",
+    "description": "Solve problem number 44 involving string, graph.",
+    "difficulty": "medium",
+    "acceptanceRate": 78.19,
+    "dataStructures": [
+      "string",
+      "graph"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 45,
+    "name": "Problem 45",
+    "description": "Solve problem number 45 involving stack, array, graph.",
+    "difficulty": "low",
+    "acceptanceRate": 46.37,
+    "dataStructures": [
+      "stack",
+      "array",
+      "graph"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 46,
+    "name": "Problem 46",
+    "description": "Solve problem number 46 involving tree, graph.",
+    "difficulty": "high",
+    "acceptanceRate": 65.67,
+    "dataStructures": [
+      "tree",
+      "graph"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 47,
+    "name": "Problem 47",
+    "description": "Solve problem number 47 involving heap.",
+    "difficulty": "high",
+    "acceptanceRate": 37.78,
+    "dataStructures": [
+      "heap"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 48,
+    "name": "Problem 48",
+    "description": "Solve problem number 48 involving heap, array, graph.",
+    "difficulty": "low",
+    "acceptanceRate": 50.94,
+    "dataStructures": [
+      "heap",
+      "array",
+      "graph"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 49,
+    "name": "Problem 49",
+    "description": "Solve problem number 49 involving hash table.",
+    "difficulty": "medium",
+    "acceptanceRate": 80.98,
+    "dataStructures": [
+      "hash table"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 50,
+    "name": "Problem 50",
+    "description": "Solve problem number 50 involving set, tree, linked list.",
+    "difficulty": "low",
+    "acceptanceRate": 74.33,
+    "dataStructures": [
+      "set",
+      "tree",
+      "linked list"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 51,
+    "name": "Problem 51",
+    "description": "Solve problem number 51 involving string, set.",
+    "difficulty": "low",
+    "acceptanceRate": 65.5,
+    "dataStructures": [
+      "string",
+      "set"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 52,
+    "name": "Problem 52",
+    "description": "Solve problem number 52 involving queue.",
+    "difficulty": "low",
+    "acceptanceRate": 25.23,
+    "dataStructures": [
+      "queue"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 53,
+    "name": "Problem 53",
+    "description": "Solve problem number 53 involving heap, hash table.",
+    "difficulty": "medium",
+    "acceptanceRate": 58.94,
+    "dataStructures": [
+      "heap",
+      "hash table"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 54,
+    "name": "Problem 54",
+    "description": "Solve problem number 54 involving string, linked list.",
+    "difficulty": "medium",
+    "acceptanceRate": 48.52,
+    "dataStructures": [
+      "string",
+      "linked list"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 55,
+    "name": "Problem 55",
+    "description": "Solve problem number 55 involving string, linked list, matrix.",
+    "difficulty": "high",
+    "acceptanceRate": 33.82,
+    "dataStructures": [
+      "string",
+      "linked list",
+      "matrix"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 56,
+    "name": "Problem 56",
+    "description": "Solve problem number 56 involving set.",
+    "difficulty": "high",
+    "acceptanceRate": 28.95,
+    "dataStructures": [
+      "set"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 57,
+    "name": "Problem 57",
+    "description": "Solve problem number 57 involving matrix.",
+    "difficulty": "low",
+    "acceptanceRate": 42.47,
+    "dataStructures": [
+      "matrix"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 58,
+    "name": "Problem 58",
+    "description": "Solve problem number 58 involving array.",
+    "difficulty": "high",
+    "acceptanceRate": 77.92,
+    "dataStructures": [
+      "array"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 59,
+    "name": "Problem 59",
+    "description": "Solve problem number 59 involving heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 64.17,
+    "dataStructures": [
+      "heap"
+    ],
+    "topicType": "algorithms"
+  },
+  {
+    "id": 60,
+    "name": "Problem 60",
+    "description": "Solve problem number 60 involving array.",
+    "difficulty": "medium",
+    "acceptanceRate": 65.76,
+    "dataStructures": [
+      "array"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 61,
+    "name": "Problem 61",
+    "description": "Solve problem number 61 involving hash table, linked list, queue.",
+    "difficulty": "low",
+    "acceptanceRate": 32.21,
+    "dataStructures": [
+      "hash table",
+      "linked list",
+      "queue"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 62,
+    "name": "Problem 62",
+    "description": "Solve problem number 62 involving stack, trie.",
+    "difficulty": "medium",
+    "acceptanceRate": 58.78,
+    "dataStructures": [
+      "stack",
+      "trie"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 63,
+    "name": "Problem 63",
+    "description": "Solve problem number 63 involving queue.",
+    "difficulty": "low",
+    "acceptanceRate": 72.8,
+    "dataStructures": [
+      "queue"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 64,
+    "name": "Problem 64",
+    "description": "Solve problem number 64 involving tree, heap, linked list.",
+    "difficulty": "medium",
+    "acceptanceRate": 39.65,
+    "dataStructures": [
+      "tree",
+      "heap",
+      "linked list"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 65,
+    "name": "Problem 65",
+    "description": "Solve problem number 65 involving graph, tree, array.",
+    "difficulty": "high",
+    "acceptanceRate": 63.42,
+    "dataStructures": [
+      "graph",
+      "tree",
+      "array"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 66,
+    "name": "Problem 66",
+    "description": "Solve problem number 66 involving trie, linked list, queue.",
+    "difficulty": "high",
+    "acceptanceRate": 77.74,
+    "dataStructures": [
+      "trie",
+      "linked list",
+      "queue"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 67,
+    "name": "Problem 67",
+    "description": "Solve problem number 67 involving heap, set, tree.",
+    "difficulty": "low",
+    "acceptanceRate": 69.51,
+    "dataStructures": [
+      "heap",
+      "set",
+      "tree"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 68,
+    "name": "Problem 68",
+    "description": "Solve problem number 68 involving hash table, queue, stack.",
+    "difficulty": "low",
+    "acceptanceRate": 63.85,
+    "dataStructures": [
+      "hash table",
+      "queue",
+      "stack"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 69,
+    "name": "Problem 69",
+    "description": "Solve problem number 69 involving matrix, tree.",
+    "difficulty": "medium",
+    "acceptanceRate": 57.09,
+    "dataStructures": [
+      "matrix",
+      "tree"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 70,
+    "name": "Problem 70",
+    "description": "Solve problem number 70 involving graph.",
+    "difficulty": "high",
+    "acceptanceRate": 37.41,
+    "dataStructures": [
+      "graph"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 71,
+    "name": "Problem 71",
+    "description": "Solve problem number 71 involving linked list, hash table.",
+    "difficulty": "low",
+    "acceptanceRate": 75.34,
+    "dataStructures": [
+      "linked list",
+      "hash table"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 72,
+    "name": "Problem 72",
+    "description": "Solve problem number 72 involving array.",
+    "difficulty": "high",
+    "acceptanceRate": 41.81,
+    "dataStructures": [
+      "array"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 73,
+    "name": "Problem 73",
+    "description": "Solve problem number 73 involving linked list, string.",
+    "difficulty": "high",
+    "acceptanceRate": 79.68,
+    "dataStructures": [
+      "linked list",
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 74,
+    "name": "Problem 74",
+    "description": "Solve problem number 74 involving heap, graph, hash table.",
+    "difficulty": "high",
+    "acceptanceRate": 54.54,
+    "dataStructures": [
+      "heap",
+      "graph",
+      "hash table"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 75,
+    "name": "Problem 75",
+    "description": "Solve problem number 75 involving set.",
+    "difficulty": "low",
+    "acceptanceRate": 85.8,
+    "dataStructures": [
+      "set"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 76,
+    "name": "Problem 76",
+    "description": "Solve problem number 76 involving array, tree.",
+    "difficulty": "high",
+    "acceptanceRate": 73.46,
+    "dataStructures": [
+      "array",
+      "tree"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 77,
+    "name": "Problem 77",
+    "description": "Solve problem number 77 involving queue.",
+    "difficulty": "low",
+    "acceptanceRate": 86.71,
+    "dataStructures": [
+      "queue"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 78,
+    "name": "Problem 78",
+    "description": "Solve problem number 78 involving stack.",
+    "difficulty": "low",
+    "acceptanceRate": 64.42,
+    "dataStructures": [
+      "stack"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 79,
+    "name": "Problem 79",
+    "description": "Solve problem number 79 involving string, stack.",
+    "difficulty": "medium",
+    "acceptanceRate": 36.73,
+    "dataStructures": [
+      "string",
+      "stack"
+    ],
+    "topicType": "database"
+  },
+  {
+    "id": 80,
+    "name": "Problem 80",
+    "description": "Solve problem number 80 involving queue, array, tree.",
+    "difficulty": "medium",
+    "acceptanceRate": 45.16,
+    "dataStructures": [
+      "queue",
+      "array",
+      "tree"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 81,
+    "name": "Problem 81",
+    "description": "Solve problem number 81 involving trie, graph.",
+    "difficulty": "high",
+    "acceptanceRate": 80.17,
+    "dataStructures": [
+      "trie",
+      "graph"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 82,
+    "name": "Problem 82",
+    "description": "Solve problem number 82 involving trie, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.33,
+    "dataStructures": [
+      "trie",
+      "string"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 83,
+    "name": "Problem 83",
+    "description": "Solve problem number 83 involving linked list, graph, tree.",
+    "difficulty": "low",
+    "acceptanceRate": 80.41,
+    "dataStructures": [
+      "linked list",
+      "graph",
+      "tree"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 84,
+    "name": "Problem 84",
+    "description": "Solve problem number 84 involving queue, graph, tree.",
+    "difficulty": "low",
+    "acceptanceRate": 44.51,
+    "dataStructures": [
+      "queue",
+      "graph",
+      "tree"
+    ],
+    "topicType": "algorithms"
+  },
+  {
+    "id": 85,
+    "name": "Problem 85",
+    "description": "Solve problem number 85 involving graph, hash table.",
+    "difficulty": "medium",
+    "acceptanceRate": 85.91,
+    "dataStructures": [
+      "graph",
+      "hash table"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 86,
+    "name": "Problem 86",
+    "description": "Solve problem number 86 involving graph, string, set.",
+    "difficulty": "medium",
+    "acceptanceRate": 48.81,
+    "dataStructures": [
+      "graph",
+      "string",
+      "set"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 87,
+    "name": "Problem 87",
+    "description": "Solve problem number 87 involving tree.",
+    "difficulty": "low",
+    "acceptanceRate": 38.08,
+    "dataStructures": [
+      "tree"
+    ],
+    "topicType": "greedy"
+  },
+  {
+    "id": 88,
+    "name": "Problem 88",
+    "description": "Solve problem number 88 involving queue, string, hash table.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.84,
+    "dataStructures": [
+      "queue",
+      "string",
+      "hash table"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 89,
+    "name": "Problem 89",
+    "description": "Solve problem number 89 involving stack, graph, set.",
+    "difficulty": "medium",
+    "acceptanceRate": 46.86,
+    "dataStructures": [
+      "stack",
+      "graph",
+      "set"
+    ],
+    "topicType": "recursion"
+  },
+  {
+    "id": 90,
+    "name": "Problem 90",
+    "description": "Solve problem number 90 involving queue, stack, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 77.74,
+    "dataStructures": [
+      "queue",
+      "stack",
+      "string"
+    ],
+    "topicType": "system design"
+  },
+  {
+    "id": 91,
+    "name": "Problem 91",
+    "description": "Solve problem number 91 involving linked list, graph.",
+    "difficulty": "medium",
+    "acceptanceRate": 40.53,
+    "dataStructures": [
+      "linked list",
+      "graph"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 92,
+    "name": "Problem 92",
+    "description": "Solve problem number 92 involving set.",
+    "difficulty": "high",
+    "acceptanceRate": 26.68,
+    "dataStructures": [
+      "set"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 93,
+    "name": "Problem 93",
+    "description": "Solve problem number 93 involving matrix, trie, set.",
+    "difficulty": "high",
+    "acceptanceRate": 25.99,
+    "dataStructures": [
+      "matrix",
+      "trie",
+      "set"
+    ],
+    "topicType": "algorithms"
+  },
+  {
+    "id": 94,
+    "name": "Problem 94",
+    "description": "Solve problem number 94 involving heap, stack.",
+    "difficulty": "high",
+    "acceptanceRate": 27.73,
+    "dataStructures": [
+      "heap",
+      "stack"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 95,
+    "name": "Problem 95",
+    "description": "Solve problem number 95 involving heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 72.93,
+    "dataStructures": [
+      "heap"
+    ],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 96,
+    "name": "Problem 96",
+    "description": "Solve problem number 96 involving tree.",
+    "difficulty": "high",
+    "acceptanceRate": 72.54,
+    "dataStructures": [
+      "tree"
+    ],
+    "topicType": "bit manipulation"
+  },
+  {
+    "id": 97,
+    "name": "Problem 97",
+    "description": "Solve problem number 97 involving matrix.",
+    "difficulty": "high",
+    "acceptanceRate": 41.49,
+    "dataStructures": [
+      "matrix"
+    ],
+    "topicType": "sql"
+  },
+  {
+    "id": 98,
+    "name": "Problem 98",
+    "description": "Solve problem number 98 involving stack.",
+    "difficulty": "low",
+    "acceptanceRate": 43.04,
+    "dataStructures": [
+      "stack"
+    ],
+    "topicType": "pandas"
+  },
+  {
+    "id": 99,
+    "name": "Problem 99",
+    "description": "Solve problem number 99 involving trie, string, queue.",
+    "difficulty": "low",
+    "acceptanceRate": 64.51,
+    "dataStructures": [
+      "trie",
+      "string",
+      "queue"
+    ],
+    "topicType": "math"
+  },
+  {
+    "id": 100,
+    "name": "Problem 100",
+    "description": "Solve problem number 100 involving stack, string.",
+    "difficulty": "medium",
+    "acceptanceRate": 58.62,
+    "dataStructures": [
+      "stack",
+      "string"
+    ],
+    "topicType": "system design"
+  }
+]
