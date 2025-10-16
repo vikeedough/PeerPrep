@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { mockLogin } from "../../../../lib/mockApi";
+import { login, logout, getSession } from "../../../../lib/auth";
 import { useTheme } from "../../../../context/ThemeContext";
+import { supabaseBrowser } from "../../../../utils/supabase/client";
 
 interface LoginFormProps {
   setLoading: (loading: boolean) => void;
@@ -46,8 +48,9 @@ export default function LoginForm({
       setLoading(true);
       await new Promise((res) => setTimeout(res, 500));
 
-      const user = mockLogin(email, password, rememberMe);
-      console.log("✅ Logged in as:", user.name);
+      //const user = mockLogin(email, password, rememberMe);
+      const user = await login(email, password);
+      console.log("✅ Logged in with session:", user.access_token);
       router.push("/problems");
     } catch {
       setInvalidFields(["email", "password"]);

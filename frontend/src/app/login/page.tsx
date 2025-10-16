@@ -8,6 +8,7 @@ import LoginCard from "../components/auth/LoginCard";
 import LoadingOverlay from "../components/common/LoadingOverlay";
 import { useTheme } from "../../../context/ThemeContext";
 
+
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();

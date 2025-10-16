@@ -5,7 +5,8 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@supabase/supabase-js": "^2.58.0",
+    "@nestjs/config": "^4.0.2",
+    "@supabase/supabase-js": "^2.75.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongodb": "^6.20.0"
