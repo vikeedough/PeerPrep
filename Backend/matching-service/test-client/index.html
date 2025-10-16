@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matching Service Test Client</title>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    label, input, select, button { margin: 0.5em 0; display:block; }
+    #log { border: 1px solid #ccc; padding: 1em; height: 200px; overflow-y: auto; background: #f9f9f9; }
+  </style>
+</head>
+<body>
+  <h2>Matching Service Test Client</h2>
+  <div>
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <label for="topics">Topics (comma separated):</label>
+    <input type="text" id="topics" placeholder="e.g. array,dp" />
+
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" placeholder="user123" />
+
+    <button id="connectBtn">Connect</button>
+    <button id="joinBtn" disabled>Find Match</button>
+    <button id="cancelBtn" disabled>Cancel Match</button>
+  </div>
+
+  <h3>Log</h3>
+  <div id="log"></div>
+
+  <script>
+    let socket;
+    const log = (msg) => {
+      const logDiv = document.getElementById('log');
+      logDiv.innerHTML += `<div>${msg}</div>`;
+      logDiv.scrollTop = logDiv.scrollHeight;
+    };
+
+    document.getElementById('connectBtn').onclick = () => {
+      const userId = document.getElementById('userId').value.trim();
+      if (!userId) return log('Please enter a User ID.');
+
+      // IMPORTANT: use full URL to your Nest server. Use same host:port where your Nest app is listening.
+      // If your Nest server is at http://localhost:3000, use that exact URL below.
+      const SERVER = 'http://localhost:3000'; 
+
+      // Connect to namespace '/matching' on the server
+      socket = io(`${SERVER}/matching`, {
+        transports: ['websocket'],
+        auth: { token: userId }
+      });
+
+      log('Connecting...');
+      socket.on('connect', () => {
+        log('Connected! Socket ID: ' + socket.id);
+        document.getElementById('joinBtn').disabled = false;
+        document.getElementById('cancelBtn').disabled = false;
+      });
+
+      socket.on('disconnect', (reason) => {
+        log('Disconnected: ' + reason);
+        document.getElementById('joinBtn').disabled = true;
+        document.getElementById('cancelBtn').disabled = true;
+      });
+
+      socket.on('matched', (data) => {
+        log('Matched! Room ID: ' + data.roomId + ', Matched User: ' + data.matchedUserId);
+      });
+
+      socket.on('connect_error', (err) => {
+        log('Connection error: ' + (err && err.message ? err.message : JSON.stringify(err)));
+      });
+
+      socket.on('error', (e) => {
+        log('Server error: ' + JSON.stringify(e));
+      });
+    };
+
+    document.getElementById('joinBtn').onclick = () => {
+      const userId = document.getElementById('userId').value.trim();
+      const difficulty = document.getElementById('difficulty').value;
+      const topics = document.getElementById('topics').value.split(',').map(t => t.trim()).filter(Boolean);
+      socket.emit('join-queue', { userId, difficulty, topics });
+      log('Sent join-queue: ' + JSON.stringify({ userId, difficulty, topics }));
+    };
+
+    document.getElementById('cancelBtn').onclick = () => {
+      if (!socket) return;
+      socket.emit('match:cancel');
+      log('Sent match:cancel');
+    };
+  </script>
+</body>
+</html>
