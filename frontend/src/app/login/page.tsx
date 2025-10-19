@@ -7,6 +7,7 @@ import TopNavBar from "../components/layout/TopNavBar";
 import LoginCard from "../components/auth/LoginCard";
 import LoadingOverlay from "../components/common/LoadingOverlay";
 import { useTheme } from "../../../context/ThemeContext";
+import { LoggedInUser, checkLogin } from "../../../lib/auth";
 
 
 export default function LoginPage() {
@@ -15,11 +16,12 @@ export default function LoginPage() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    const user = mockCheckLogin();
-    if (user) {
-      console.log("Auto-login as:", user.name);
-      router.push("/problems");
-    }
+    checkLogin().then((user: LoggedInUser | null) => {
+      if (user) {
+        console.log("Auto-login as:", user.email);
+        router.push("/problems");
+      }
+    });
   }, [router]);
 
   return (

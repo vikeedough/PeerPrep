@@ -1,4 +1,4 @@
-import { supabaseBrowser } from '../utils/supabase/client';
+import { getSupabaseClient } from '../utils/supabase/client';
 
 /**
  * This file provides helper functions to make authenticated requests to the backend API.
@@ -7,8 +7,8 @@ import { supabaseBrowser } from '../utils/supabase/client';
 const BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
 
 export async function backendFetch(path: string, init?: RequestInit) {
-    // read the current Supabase session in the browser
-    const { data: { session } } = await supabaseBrowser.auth.getSession();
+    const supabase = getSupabaseClient(rememberMe);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
     // check current headers
     const headers = new Headers(init?.headers || {});
