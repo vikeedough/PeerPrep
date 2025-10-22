@@ -1,5 +1,4 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { createRemoteJWKSet, jwtVerify, JWTPayload } from 'jose';
 
 /** 
  * This service handles JWT verification using JWKS.
@@ -9,20 +8,29 @@ import { createRemoteJWKSet, jwtVerify, JWTPayload } from 'jose';
  */
 @Injectable()
 export class JwtService {
-    private jwks: ReturnType<typeof createRemoteJWKSet>;
+    private jwks: ReturnType<Awaited<typeof import('jose')>['createRemoteJWKSet']> | null = null;
     private audience?: string;
 
     // this constructor initializes the JWKS client
     constructor() {
-        const jwksUri = new URL(process.env.SUPABASE_DATABASE_URI!);
-        this.jwks = createRemoteJWKSet(jwksUri);
         this.audience = process.env.SUPABASE_JWT_AUD;
     }
 
+    private async getJWKS() {
+        const { createRemoteJWKSet } = await import('jose');
+        if (!this.jwks) {
+            const jwksUri = process.env.SUPABASE_JWT_URL!;
+            this.jwks = createRemoteJWKSet(new URL(jwksUri));
+        }
+        return this.jwks;
+    }
+
     // this function verifies the JWT and returns the payload if valid
-    async verifyToken(token: string): Promise<JWTPayload> {
+    async verifyToken(token: string) {
         try {
-            const { payload } = await jwtVerify(token, this.jwks, {      
+            const { jwtVerify } = await import('jose');
+            const jwks = await this.getJWKS();
+            const { payload } = await jwtVerify(token, jwks, {
                 algorithms: ['RS256'],
                 audience: this.audience,
             });
