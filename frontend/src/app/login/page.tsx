@@ -3,7 +3,7 @@
 import { useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/navigation";
 import { mockCheckLogin } from "../../../lib/mockApi";
-import TopNavBar from "../components/layout/TopNavBar";
+import TopNavBar from "../components/navbar/TopNavBar";
 import LoginCard from "../components/auth/LoginCard";
 import LoadingOverlay from "../components/common/LoadingOverlay";
 import { useTheme } from "../../../context/ThemeContext";

@@ -1,9 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PeerPrep Frontend
 
-## Getting Started
+This is the **frontend** for the project, built using [Next.js](https://nextjs.org) and bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).  
+It provides the user interface and communicates with the backend API to display and manage data.
 
-First, run the development server:
+---
 
+## Overview
+
+This frontend is structured using the **App Router** (`/app` directory) and leverages **TypeScript**, **Tailwind CSS**, and **React hooks** for UI and state management.
+
+The layout and navigation are defined in `app/layout.tsx`, while the main page content resides in `app/page.tsx`.
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** ≥ 18
+- **npm**, **yarn**, **pnpm**, or **bun**
+
+### 2️⃣ Installation
+
+Clone the repository and install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+# Running the Development Server
+Start the local dev server with the following command
 ```bash
 npm run dev
 # or
@@ -13,24 +47,16 @@ pnpm dev
 # or
 bun dev
 ```
+By default, the app runs on http://localhost:4000 on your browser. If you want to change the port number, update this line
+```json
+"dev": "next dev --port 4000 --turbopack"
+```
+located at package.json.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Tech Stack
+- Next.js 14+
+- React 18+
+- TypeScript
+- Tailwind CSS
+- Axios (for API calls)
+- ESLint + Prettier (for linting and formatting)
