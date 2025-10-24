@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/navigation";
-import TopNavBar from "../components/layout/TopNavBar";
+// import TopNavBar from "../components/layout/TopNavBar";
 import LoadingOverlay from "../components/common/LoadingOverlay";
 import { useTheme } from "../../../context/ThemeContext";
 import { signUp } from "../../../lib/auth";

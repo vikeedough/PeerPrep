@@ -7,8 +7,6 @@ import TopNavBar from "../components/navbar/TopNavBar";
 import LoginCard from "../components/auth/LoginCard";
 import LoadingOverlay from "../components/common/LoadingOverlay";
 import { useTheme } from "../../../context/ThemeContext";
-import { LoggedInUser, checkLogin } from "../../../lib/auth";
-
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
@@ -17,12 +15,11 @@ export default function LoginPage() {
 
   // check for existing session on mount
   useEffect(() => {
-    checkLogin().then((user: LoggedInUser | null) => {
-      if (user) {
-        console.log("Auto-login as:", user.email);
-        router.push("/problems");
-      }
-    });
+    const user = mockCheckLogin();
+    if (user) {
+      console.log("Auto-login as:", user.name);
+      router.push("/problems");
+    }
   }, [router]);
 
   return (
