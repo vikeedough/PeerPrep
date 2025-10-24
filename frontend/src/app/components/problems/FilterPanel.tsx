@@ -1,118 +1,104 @@
 "use client";
 
-import React from "react";
+import { useState, useMemo } from "react";
+import { Question } from "../../../../lib/mockApi";
 import { useTheme } from "../../../../context/ThemeContext";
-import Button from "../common/Button";
+import QuestionsTable from "./QuestionsTable";
 
-const DATA_STRUCTURES = [
-  "Arrays",
-  "Strings",
-  "Hash Table",
-  "Tree",
-  "Graph",
-  "Stack",
-  "Queue",
-  "Linked List",
-];
+interface Props {
+  questions: Question[];
+}
 
-const TOPICS = ["Algorithms", "Database", "Panda", "System Design"];
-
-export default function FilterPanel({
-  search,
-  setSearch,
-  selectedDS,
-  setSelectedDS,
-  selectedTopic,
-  setSelectedTopic,
-  expanded,
-  setExpanded,
-  handleSort,
-  ascending,
-}: any) {
+export default function FilterPanel({ questions }: Props) {
   const { theme } = useTheme();
 
-  const toggleSelection = (item: string, list: string[], setList: any) => {
-    setList(
-      list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
-    );
-  };
+  const [difficulty, setDifficulty] = useState<string>("all");
+  const [topic, setTopic] = useState<string>("all");
+
+  const capitalize = (text: string) =>
+    text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+  const difficulties = useMemo(() => {
+    const unique = Array.from(new Set(questions.map((q) => q.difficulty)));
+    const formatted = unique.map(capitalize);
+    return ["All", ...formatted];
+  }, [questions]);
+
+  const topics = useMemo(() => {
+    const unique = Array.from(new Set(questions.map((q) => q.topicType)));
+    const formatted = unique.map(capitalize);
+    return ["All", ...formatted];
+  }, [questions]);
+
+  // Filter logic
+  const filteredQuestions = useMemo(() => {
+    return questions.filter((q) => {
+      const matchesDifficulty =
+        difficulty === "All" || q.difficulty.toLowerCase() === difficulty.toLowerCase();
+      const matchesTopic =
+        topic === "All" || q.topicType.toLowerCase() === topic.toLowerCase();
+      return matchesDifficulty && matchesTopic;
+    });
+  }, [questions, difficulty, topic]);
 
   return (
-    <div
-      className="rounded-xl p-4 space-y-4"
-      style={{ backgroundColor: theme.surface }}
-    >
-      {/* Data Structure Filters */}
-      <div>
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="font-bold">Data Structures</h3>
-          <Button variant="secondary" onClick={() => setExpanded(!expanded)}>
-            {expanded ? "Collapse" : "Expand"}
-          </Button>
-        </div>
-        <div
-          className={`grid gap-2 ${
-            expanded ? "grid-cols-4" : "grid-cols-3 max-h-16 overflow-hidden"
-          }`}
-        >
-          {DATA_STRUCTURES.map((ds) => (
-            <button
-              key={ds}
-              onClick={() => toggleSelection(ds, selectedDS, setSelectedDS)}
-              className={`rounded-md px-3 py-1 border ${
-                selectedDS.includes(ds)
-                  ? "bg-blue-500 text-white"
-                  : "bg-transparent"
-              }`}
-              style={{ borderColor: theme.border }}
-            >
-              {ds}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Topic Filters */}
-      <div>
-        <h3 className="font-bold mb-2">Topics</h3>
-        <div className="flex gap-2 flex-wrap">
-          {TOPICS.map((topic) => (
-            <button
-              key={topic}
-              onClick={() =>
-                toggleSelection(topic, selectedTopic, setSelectedTopic)
-              }
-              className={`rounded-md px-3 py-1 border ${
-                selectedTopic.includes(topic)
-                  ? "bg-green-500 text-white"
-                  : "bg-transparent"
-              }`}
-              style={{ borderColor: theme.border }}
-            >
-              {topic}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Search and Sort */}
-      <div className="flex justify-between items-center">
-        <input
-          type="text"
-          placeholder="Search questions..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="p-2 border rounded-md w-1/2"
+    <div className="flex flex-col gap-4">
+      {/* Filter Controls */}
+      <div className="flex gap-4 flex-wrap">
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+          className="p-2 rounded-md border transition-colors focus:outline-none focus:ring-2"
           style={{
-            backgroundColor: theme.background,
-            borderColor: theme.border,
+            backgroundColor: theme.surface,
             color: theme.text,
+            borderColor: theme.border,
           }}
-        />
-        <Button variant="primary" onClick={handleSort}>
-          Sort by Difficulty {ascending ? "↑" : "↓"}
-        </Button>
+        >
+          {difficulties.map((d) => (
+            <option
+              key={d}
+              value={d}
+              style={{
+                backgroundColor: theme.surface,
+                color: theme.text,
+              }}
+            >
+              {d === "All" ? "All Difficulties" : d}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className="p-2 rounded-md border transition-colors focus:outline-none focus:ring-2"
+          style={{
+            backgroundColor: theme.surface,
+            color: theme.text,
+            borderColor: theme.border,
+          }}
+        >
+          {topics.map((t) => (
+            <option
+              key={t}
+              value={t}
+              style={{
+                backgroundColor: theme.surface,
+                color: theme.text,
+              }}
+            >
+              {t === "All" ? "All Topics" : t}
+            </option>
+          ))}
+        </select>
       </div>
+
+      {/* Render Table */}
+      <QuestionsTable questions={filteredQuestions} />
     </div>
   );
 }

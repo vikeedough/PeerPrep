@@ -2,6 +2,7 @@
 
 import { Question } from "../../../../lib/mockApi";
 import { useTheme } from "../../../../context/ThemeContext";
+import QuestionRow from "./Question";
 
 interface Props {
   questions: Question[];
@@ -22,20 +23,10 @@ export default function QuestionsTable({ questions }: Props) {
           <th className="p-3 text-left">Topic</th>
         </tr>
       </thead>
+
       <tbody>
         {questions.map((q, i) => (
-          <tr
-            key={q.id}
-            className="border-b hover:bg-opacity-10"
-            style={{ borderColor: theme.border }}
-          >
-            <td className="p-3">{i + 1}</td>
-            <td className="p-3 font-medium">{q.name}</td>
-            <td className="p-3 capitalize">{q.difficulty}</td>
-            <td className="p-3">{q.acceptanceRate}%</td>
-            <td className="p-3">{q.dataStructure}</td>
-            <td className="p-3">{q.topicType}</td>
-          </tr>
+          <QuestionRow key={q.id} question={q} index={i} />
         ))}
       </tbody>
     </table>
