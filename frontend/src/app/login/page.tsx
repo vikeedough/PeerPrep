@@ -15,6 +15,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { theme } = useTheme();
 
+  // check for existing session on mount
   useEffect(() => {
     checkLogin().then((user: LoggedInUser | null) => {
       if (user) {

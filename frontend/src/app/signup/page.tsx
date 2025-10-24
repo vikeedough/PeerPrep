@@ -29,7 +29,7 @@ export default function SignupPage() {
         }
     }
 
-
+  // skeleton frontend, need to add other user details later
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-background">
       <form

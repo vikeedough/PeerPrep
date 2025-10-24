@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { mockLogin } from "../../../../lib/mockApi";
 import { login, logout, getSession } from "../../../../lib/auth";
 import { useTheme } from "../../../../context/ThemeContext";
 
@@ -44,6 +43,7 @@ export default function LoginForm({
     }
 
     try {
+      // this handles the login via Supabase
       setLoading(true);
       const user = await login(email, password, rememberMe);
       console.log("✅ Logged in with session:");
