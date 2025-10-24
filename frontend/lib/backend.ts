@@ -34,6 +34,17 @@ export async function backendFetch(path: string, init?: RequestInit) {
 export async function backendJson<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await backendFetch(path, init);
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error((body as any)?.error || res.statusText);
+  if (!res.ok) {
+    // Build a helpful message from common API error shapes
+    let message = `HTTP ${res.status} ${res.statusText}`;
+
+    if (body && typeof body === 'object') {
+      const obj = body as { error?: unknown; message?: unknown; detail?: unknown };
+      if (typeof obj.error === 'string') message = obj.error;
+      else if (typeof obj.message === 'string') message = obj.message;
+      else if (typeof obj.detail === 'string') message = obj.detail;
+    }
+    throw new Error(message);
+  }
   return body as T;
 }

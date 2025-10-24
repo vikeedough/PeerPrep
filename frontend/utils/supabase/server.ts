@@ -5,8 +5,8 @@ export async function createSupabaseServerClientRSC() {
     const cookieStore = await cookies(); // read-only in RSC
 
     return createServerClient(
-        process.env.SUPABASE_URL!,
-        process.env.SUPABASE_ANON_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
             cookies: {
                 // Return all cookies as { name, value }[]
