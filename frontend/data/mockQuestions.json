@@ -1,0 +1,452 @@
+[
+  {
+    "id": 1,
+    "name": "Prefix Dictionary Search",
+    "description": "Implement a trie to store and search words efficiently using prefix queries.",
+    "difficulty": "medium",
+    "acceptanceRate": 45.52,
+    "dataStructures": ["set", "trie", "string"],
+    "topicType": "system design"
+  },
+  {
+    "id": 2,
+    "name": "Friend Recommendation System",
+    "description": "Design a social graph to recommend mutual friends using graph traversal.",
+    "difficulty": "medium",
+    "acceptanceRate": 42.11,
+    "dataStructures": ["graph", "set", "hashmap"],
+    "topicType": "system design"
+  },
+  {
+    "id": 3,
+    "name": "Autocomplete Feature",
+    "description": "Build an autocomplete system that suggests top matching words for a given prefix.",
+    "difficulty": "easy",
+    "acceptanceRate": 60.74,
+    "dataStructures": ["trie", "priority queue", "string"],
+    "topicType": "system design"
+  },
+  {
+    "id": 4,
+    "name": "Unique Email Addresses",
+    "description": "Given a list of emails, return the number of unique addresses that actually receive mail.",
+    "difficulty": "easy",
+    "acceptanceRate": 78.3,
+    "dataStructures": ["set", "string"],
+    "topicType": "string manipulation"
+  },
+  {
+    "id": 5,
+    "name": "Word Ladder",
+    "description": "Find the shortest transformation sequence from begin word to end word using a word list.",
+    "difficulty": "hard",
+    "acceptanceRate": 31.22,
+    "dataStructures": ["graph", "queue", "set"],
+    "topicType": "graph theory"
+  },
+  {
+    "id": 6,
+    "name": "Top K Frequent Elements",
+    "description": "Return the k most frequent elements from an integer array.",
+    "difficulty": "medium",
+    "acceptanceRate": 55.1,
+    "dataStructures": ["heap", "hashmap", "array"],
+    "topicType": "data analysis"
+  },
+  {
+    "id": 7,
+    "name": "LRU Cache Design",
+    "description": "Design a least recently used (LRU) cache with O(1) get and put operations.",
+    "difficulty": "medium",
+    "acceptanceRate": 40.24,
+    "dataStructures": ["linked list", "hashmap"],
+    "topicType": "system design"
+  },
+  {
+    "id": 8,
+    "name": "Merge Intervals",
+    "description": "Merge all overlapping intervals in a list of intervals.",
+    "difficulty": "medium",
+    "acceptanceRate": 59.18,
+    "dataStructures": ["array", "sorting"],
+    "topicType": "interval problems"
+  },
+  {
+    "id": 9,
+    "name": "Kth Largest Element in Stream",
+    "description": "Find the kth largest element in a data stream using a heap.",
+    "difficulty": "medium",
+    "acceptanceRate": 48.67,
+    "dataStructures": ["heap", "array"],
+    "topicType": "stream processing"
+  },
+  {
+    "id": 10,
+    "name": "Group Anagrams",
+    "description": "Group words that are anagrams of each other using a hash map.",
+    "difficulty": "medium",
+    "acceptanceRate": 65.42,
+    "dataStructures": ["string", "hashmap"],
+    "topicType": "string manipulation"
+  },
+  {
+    "id": 11,
+    "name": "Binary Tree Level Order Traversal",
+    "description": "Return the level order traversal of a binary tree’s nodes.",
+    "difficulty": "medium",
+    "acceptanceRate": 63.78,
+    "dataStructures": ["queue", "tree"],
+    "topicType": "tree traversal"
+  },
+  {
+    "id": 12,
+    "name": "Valid Parentheses",
+    "description": "Determine if the input string has valid parentheses using a stack.",
+    "difficulty": "easy",
+    "acceptanceRate": 85.3,
+    "dataStructures": ["stack", "string"],
+    "topicType": "string validation"
+  },
+  {
+    "id": 13,
+    "name": "Course Schedule",
+    "description": "Determine if it is possible to finish all courses given prerequisite relationships.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.44,
+    "dataStructures": ["graph", "queue"],
+    "topicType": "graph theory"
+  },
+  {
+    "id": 14,
+    "name": "Design Twitter",
+    "description": "Design a simplified Twitter that supports posting tweets and following users.",
+    "difficulty": "medium",
+    "acceptanceRate": 35.2,
+    "dataStructures": ["hashmap", "heap"],
+    "topicType": "system design"
+  },
+  {
+    "id": 15,
+    "name": "Find Median from Data Stream",
+    "description": "Maintain a data structure that supports finding the median in a data stream.",
+    "difficulty": "hard",
+    "acceptanceRate": 40.56,
+    "dataStructures": ["heap", "queue"],
+    "topicType": "stream processing"
+  },
+  {
+    "id": 16,
+    "name": "Subarray Sum Equals K",
+    "description": "Find the total number of continuous subarrays whose sum equals k.",
+    "difficulty": "medium",
+    "acceptanceRate": 51.18,
+    "dataStructures": ["array", "hashmap"],
+    "topicType": "array sum"
+  },
+  {
+    "id": 17,
+    "name": "Design HashSet",
+    "description": "Implement a basic HashSet without using built-in hash libraries.",
+    "difficulty": "easy",
+    "acceptanceRate": 75.24,
+    "dataStructures": ["array", "linked list"],
+    "topicType": "system design"
+  },
+  {
+    "id": 18,
+    "name": "Clone Graph",
+    "description": "Clone an undirected graph using DFS or BFS traversal.",
+    "difficulty": "medium",
+    "acceptanceRate": 47.61,
+    "dataStructures": ["graph", "hashmap"],
+    "topicType": "graph theory"
+  },
+  {
+    "id": 19,
+    "name": "Number of Islands",
+    "description": "Count the number of islands in a binary grid using DFS.",
+    "difficulty": "medium",
+    "acceptanceRate": 64.19,
+    "dataStructures": ["graph", "matrix"],
+    "topicType": "graph traversal"
+  },
+  {
+    "id": 20,
+    "name": "Search Suggestions System",
+    "description": "Given a list of products, suggest up to three product names after each character of a search word.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.9,
+    "dataStructures": ["trie", "array", "string"],
+    "topicType": "system design"
+  },
+  {
+    "id": 21,
+    "name": "Two Sum",
+    "description": "Return indices of two numbers that add up to a specific target.",
+    "difficulty": "easy",
+    "acceptanceRate": 89.4,
+    "dataStructures": ["array", "hashmap"],
+    "topicType": "array sum"
+  },
+  {
+    "id": 22,
+    "name": "Binary Search Tree Iterator",
+    "description": "Implement an iterator over a BST that returns the next smallest number.",
+    "difficulty": "medium",
+    "acceptanceRate": 67.4,
+    "dataStructures": ["tree", "stack"],
+    "topicType": "tree traversal"
+  },
+  {
+    "id": 23,
+    "name": "Reorder Log Files",
+    "description": "Reorder log files so that letter logs come before digit logs, sorted lexicographically.",
+    "difficulty": "easy",
+    "acceptanceRate": 71.3,
+    "dataStructures": ["string", "sorting"],
+    "topicType": "string manipulation"
+  },
+  {
+    "id": 24,
+    "name": "Meeting Rooms II",
+    "description": "Find the minimum number of conference rooms required given meeting time intervals.",
+    "difficulty": "medium",
+    "acceptanceRate": 59.2,
+    "dataStructures": ["heap", "array"],
+    "topicType": "interval problems"
+  },
+  {
+    "id": 25,
+    "name": "Reverse Linked List",
+    "description": "Reverse a singly linked list iteratively or recursively.",
+    "difficulty": "easy",
+    "acceptanceRate": 88.2,
+    "dataStructures": ["linked list"],
+    "topicType": "linked list operations"
+  },
+  {
+    "id": 26,
+    "name": "Implement Queue using Stacks",
+    "description": "Implement a first in first out (FIFO) queue using only two stacks.",
+    "difficulty": "easy",
+    "acceptanceRate": 84.9,
+    "dataStructures": ["stack", "queue"],
+    "topicType": "system design"
+  },
+  {
+    "id": 27,
+    "name": "Minimum Window Substring",
+    "description": "Find the smallest substring in s containing all characters of t.",
+    "difficulty": "hard",
+    "acceptanceRate": 39.6,
+    "dataStructures": ["string", "hashmap"],
+    "topicType": "sliding window"
+  },
+  {
+    "id": 28,
+    "name": "Add Two Numbers",
+    "description": "Add two numbers represented by linked lists and return the sum as a linked list.",
+    "difficulty": "medium",
+    "acceptanceRate": 56.3,
+    "dataStructures": ["linked list"],
+    "topicType": "linked list operations"
+  },
+  {
+    "id": 29,
+    "name": "Valid Sudoku",
+    "description": "Determine if a 9x9 Sudoku board is valid according to Sudoku rules.",
+    "difficulty": "medium",
+    "acceptanceRate": 72.5,
+    "dataStructures": ["matrix", "set"],
+    "topicType": "grid validation"
+  },
+  {
+    "id": 30,
+    "name": "Implement Trie (Prefix Tree)",
+    "description": "Implement the Trie class that supports insert, search, and startsWith operations.",
+    "difficulty": "medium",
+    "acceptanceRate": 65.2,
+    "dataStructures": ["trie", "string"],
+    "topicType": "system design"
+  },
+  {
+    "id": 31,
+    "name": "Rotate Image",
+    "description": "Rotate an n x n matrix by 90 degrees clockwise.",
+    "difficulty": "medium",
+    "acceptanceRate": 73.1,
+    "dataStructures": ["matrix"],
+    "topicType": "array manipulation"
+  },
+  {
+    "id": 32,
+    "name": "K Closest Points to Origin",
+    "description": "Find the K closest points to the origin using Euclidean distance.",
+    "difficulty": "medium",
+    "acceptanceRate": 67.8,
+    "dataStructures": ["heap", "array"],
+    "topicType": "geometry"
+  },
+  {
+    "id": 33,
+    "name": "Valid Palindrome",
+    "description": "Check if a given string is a palindrome ignoring non-alphanumeric characters.",
+    "difficulty": "easy",
+    "acceptanceRate": 85.6,
+    "dataStructures": ["string"],
+    "topicType": "string validation"
+  },
+  {
+    "id": 34,
+    "name": "Binary Tree Maximum Path Sum",
+    "description": "Find the maximum path sum in a binary tree.",
+    "difficulty": "hard",
+    "acceptanceRate": 42.7,
+    "dataStructures": ["tree"],
+    "topicType": "tree traversal"
+  },
+  {
+    "id": 35,
+    "name": "Spiral Matrix",
+    "description": "Return all elements of a matrix in spiral order.",
+    "difficulty": "medium",
+    "acceptanceRate": 68.1,
+    "dataStructures": ["matrix"],
+    "topicType": "array traversal"
+  },
+  {
+    "id": 36,
+    "name": "3Sum",
+    "description": "Find all unique triplets in an array that sum up to zero.",
+    "difficulty": "medium",
+    "acceptanceRate": 59.8,
+    "dataStructures": ["array", "sorting"],
+    "topicType": "two pointer"
+  },
+  {
+    "id": 37,
+    "name": "Maximum Subarray",
+    "description": "Find the contiguous subarray with the largest sum.",
+    "difficulty": "easy",
+    "acceptanceRate": 87.4,
+    "dataStructures": ["array"],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 38,
+    "name": "Decode Ways",
+    "description": "Given a numeric string, determine the total number of ways to decode it.",
+    "difficulty": "medium",
+    "acceptanceRate": 48.9,
+    "dataStructures": ["string"],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 39,
+    "name": "Longest Increasing Subsequence",
+    "description": "Find the length of the longest increasing subsequence in an array.",
+    "difficulty": "medium",
+    "acceptanceRate": 53.2,
+    "dataStructures": ["array"],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 40,
+    "name": "House Robber",
+    "description": "Maximize the amount of money you can rob without robbing adjacent houses.",
+    "difficulty": "medium",
+    "acceptanceRate": 66.4,
+    "dataStructures": ["array"],
+    "topicType": "dynamic programming"
+  },
+  {
+    "id": 41,
+    "name": "Merge Two Sorted Lists",
+    "description": "Merge two sorted linked lists into one sorted list.",
+    "difficulty": "easy",
+    "acceptanceRate": 88.6,
+    "dataStructures": ["linked list"],
+    "topicType": "linked list operations"
+  },
+  {
+    "id": 42,
+    "name": "Valid Anagram",
+    "description": "Check if two strings are anagrams of each other.",
+    "difficulty": "easy",
+    "acceptanceRate": 90.2,
+    "dataStructures": ["string", "hashmap"],
+    "topicType": "string validation"
+  },
+  {
+    "id": 43,
+    "name": "Binary Tree Right Side View",
+    "description": "Return the rightmost node of each level in a binary tree.",
+    "difficulty": "medium",
+    "acceptanceRate": 67.1,
+    "dataStructures": ["queue", "tree"],
+    "topicType": "tree traversal"
+  },
+  {
+    "id": 44,
+    "name": "Design Circular Queue",
+    "description": "Design a circular queue implementation supporting standard queue operations.",
+    "difficulty": "medium",
+    "acceptanceRate": 61.8,
+    "dataStructures": ["array", "queue"],
+    "topicType": "system design"
+  },
+  {
+    "id": 45,
+    "name": "Pacific Atlantic Water Flow",
+    "description": "Find all coordinates where water can flow to both the Pacific and Atlantic oceans.",
+    "difficulty": "medium",
+    "acceptanceRate": 55.6,
+    "dataStructures": ["matrix", "graph"],
+    "topicType": "graph traversal"
+  },
+  {
+    "id": 46,
+    "name": "Lowest Common Ancestor of a BST",
+    "description": "Find the lowest common ancestor of two nodes in a BST.",
+    "difficulty": "easy",
+    "acceptanceRate": 85.5,
+    "dataStructures": ["tree"],
+    "topicType": "tree traversal"
+  },
+  {
+    "id": 47,
+    "name": "Letter Combinations of a Phone Number",
+    "description": "Return all possible letter combinations that a digit string could represent.",
+    "difficulty": "medium",
+    "acceptanceRate": 69.8,
+    "dataStructures": ["string", "recursion"],
+    "topicType": "backtracking"
+  },
+  {
+    "id": 48,
+    "name": "Word Search",
+    "description": "Determine if a given word exists in the board by sequentially adjacent letters.",
+    "difficulty": "medium",
+    "acceptanceRate": 53.6,
+    "dataStructures": ["matrix", "recursion"],
+    "topicType": "backtracking"
+  },
+  {
+    "id": 49,
+    "name": "Sudoku Solver",
+    "description": "Fill the empty cells of a Sudoku board so that each row, column, and 3x3 box is valid.",
+    "difficulty": "hard",
+    "acceptanceRate": 38.9,
+    "dataStructures": ["matrix", "recursion"],
+    "topicType": "backtracking"
+  },
+  {
+    "id": 50,
+    "name": "Word Break",
+    "description": "Determine if a string can be segmented into a space-separated sequence of dictionary words.",
+    "difficulty": "medium",
+    "acceptanceRate": 58.7,
+    "dataStructures": ["string", "set"],
+    "topicType": "dynamic programming"
+  }
+]
